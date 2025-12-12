@@ -73,6 +73,13 @@ public class Furgoneta extends Vehiculo implements Comparable<Furgoneta>{
 		// TODO Auto-generated method stub
 		return Integer.compare(numKm, o.getNumKm());
 	}
+
+	@Override
+	public String toString() {
+		return "Furgoneta [numKm=" + numKm + ", cambioAutomatico=" + cambioAutomatico + ", marchas=" + marchas
+				+ ", getIdVehiculo()=" + getIdVehiculo() + ", getMarca()=" + getMarca() + ", getModelo()=" + getModelo()
+				+ ", getAñoFabricacion()=" + getAñoFabricacion() + "]";
+	}
 	
 	
 

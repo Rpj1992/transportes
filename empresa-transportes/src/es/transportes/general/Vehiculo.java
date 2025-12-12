@@ -14,11 +14,11 @@ public abstract class Vehiculo implements Identificable<Integer>, Descriptible{
 		//Valores null
 	}
 
-	public Vehiculo(Integer idVehiculo, String marca, String modelo, int añoFabricacion) {
+	public Vehiculo(Integer idVehiculo, String marca, String modelo, int anoFabricacion) {
 		this.idVehiculo = idVehiculo;
 		this.marca = marca;
 		this.modelo = modelo;
-		this.anoFabricacion = añoFabricacion;
+		this.anoFabricacion = anoFabricacion;
 	}
 
 	public Integer getIdVehiculo() {
@@ -49,8 +49,8 @@ public abstract class Vehiculo implements Identificable<Integer>, Descriptible{
 		this.modelo = modelo;
 	}
 
-	public void setAñoFabricacion(int añoFabricacion) {
-		this.anoFabricacion = añoFabricacion;
+	public void setAñoFabricacion(int anoFabricacion) {
+		this.anoFabricacion = anoFabricacion;
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public abstract class Vehiculo implements Identificable<Integer>, Descriptible{
 	}
 	
 	public void arrancar() {
-		System.out.println("Arrancando el vehículo");
+		System.out.println("Arrancando el vehículo...");
 		for (int i = 3; i > 0; i--) {
 			System.out.println(i);
 		}
@@ -84,6 +84,12 @@ public abstract class Vehiculo implements Identificable<Integer>, Descriptible{
 	
 	public boolean esVeterano() {
 		return antiguedad() > 20;
+	}
+
+	@Override
+	public String toString() {
+		return "Vehiculo [idVehiculo=" + idVehiculo + ", marca=" + marca + ", modelo=" + modelo + ", anoFabricacion="
+				+ anoFabricacion + "]";
 	}
 	
 

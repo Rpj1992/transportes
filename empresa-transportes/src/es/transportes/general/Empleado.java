@@ -1,6 +1,7 @@
 package es.transportes.general;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public abstract class Empleado {
 	
@@ -10,8 +11,9 @@ public abstract class Empleado {
 	
 	public Empleado() {
 		nombre = "Paco";
-		edad = 18;
 		fechaNacimiento = LocalDate.of(1992, 01, 01);
+		this.edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+		
 	}
 
 	public Empleado(String nombre, int edad, LocalDate fechaNacimiento) {
@@ -54,10 +56,12 @@ public abstract class Empleado {
 	}
 	
 	private void actualizarEdad(int edad) {
-		if (LocalDate.now().getYear() - fechaNacimiento.getYear() == edad) {
+		int edadCalculada = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+		if (edadCalculada == edad) {
 			this.edad = edad;
 		} else {
-			System.out.println("La edad no puede ser distanta a la resta del año actual al año de nacimiento");
+			System.out.println("La edad no puede ser distanta a la resta de la fecha actual y la de nacimiento");
+			this.edad = edadCalculada;
 		}
 	}
 	
@@ -70,13 +74,13 @@ public abstract class Empleado {
 	}
 	
 	public String datosEmpleado() {
-		String esMayor = "menor";
+		String mayoriaEdad = "menor";
 		
-		if (LocalDate.now().getYear() - fechaNacimiento.getYear() >= 18) {
-			esMayor = "mayor";
+		if (edad >= 18) {
+			mayoriaEdad = "mayor";
 		}
 		
-		return "Nombre: " + getNombre() + " de " + getEdad() +" y es " + esMayor + " de edad.";
+		return "Nombre: " + getNombre() + " de " + getEdad() +" y es " + mayoriaEdad + " de edad.";
 	}
 
 	@Override

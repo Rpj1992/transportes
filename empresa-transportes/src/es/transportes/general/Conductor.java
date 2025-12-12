@@ -9,7 +9,7 @@ public class Conductor extends Empleado {
 
 	private List<String> carnets;
 	private static final List<String> TIPOS_CARNETS = new ArrayList<String>(Arrays.asList("AM","A1","A2","A","B","B+E","C","C+E","D","D+E"));
-	private static final List<String> CARNET_DEFECTO= new ArrayList<String>(Arrays.asList("B"));
+	private static final List<String> CARNET_DEFECTO= Arrays.asList(TIPOS_CARNETS.get(4));
 	
 	public Conductor() {
 		super();
@@ -41,7 +41,8 @@ public class Conductor extends Empleado {
 		if (carnets != null) {
 			this.carnets = carnets;
 		} else {
-			System.out.println("Hay que introducir carnets");
+			System.out.println("Hay que introducir carnets. Carnet por defecto: B");
+			this.carnets = CARNET_DEFECTO;
 		}
 	}
 	

@@ -2,6 +2,7 @@ package es.transportes.general;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,7 +10,12 @@ import jarfinanciable.Financiable;
 
 public class Transporte implements Identificable<Integer>, Descriptible, Comparable<Transporte>, Financiable{
 	
-	private int idTransporte;
+	private static final List<String> POSIBLES_DESTINOS = new ArrayList<>(Arrays.asList("Valladolid",
+																						"Murcia",
+																						"Zaragoza",
+																						"Valencia",
+																						"Albacete"));
+	private Integer idTransporte;
 	private List<MozoAlmacen> mozos;
 	private Conductor conductor;
 	private Vehiculo vehiculo;
@@ -60,6 +66,10 @@ public class Transporte implements Identificable<Integer>, Descriptible, Compara
 		return precio;
 	}
 
+	public static List<String> getPosiblesDestinos() {
+		return POSIBLES_DESTINOS;
+	}
+
 	public void setIdTransporte(int idTransporte) {
 		this.idTransporte = idTransporte;
 	}
@@ -89,8 +99,7 @@ public class Transporte implements Identificable<Integer>, Descriptible, Compara
 	}
 	
 	private void actualizarDestino (String destino) {
-		if (destino.equalsIgnoreCase("Valladolid") || destino.equalsIgnoreCase("Murcia") || destino.equalsIgnoreCase("Zaragoza")
-				|| destino.equalsIgnoreCase("Valencia") || destino.equalsIgnoreCase("Albacete")) {
+		if (POSIBLES_DESTINOS.contains(destino)) {
 			this.destino = destino;
 		} else {
 			System.out.println("El destino no puede ser distinto a los que trabaja esta empresa");
@@ -99,8 +108,19 @@ public class Transporte implements Identificable<Integer>, Descriptible, Compara
 
 	@Override
 	public String describir() {
-		// TODO Auto-generated method stub
-		return toString();
+		String descripcion = "Transporte nº " + idTransporte + ", conductor (" + conductor.getNombre() + 
+				") con "+ mozos.size() + " mozos: ";
+			if (!mozos.isEmpty()) {
+				for (int i = 0; i < mozos.size(); i++) {
+					descripcion += mozos.get(i).getNombre();
+					if (i < mozos.size()-2) {
+						descripcion += ", ";
+					} else if (i == mozos.size()-2) {
+						descripcion += " y ";
+					}
+				}
+			}
+		return descripcion;
 	}
 
 	@Override

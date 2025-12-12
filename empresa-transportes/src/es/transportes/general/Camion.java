@@ -32,7 +32,7 @@ public class Camion extends Vehiculo implements Comparable<Camion>{
 	}
 	
 	public boolean esAptoParaCarretera() {
-		return true;
+		return numEjes >= 2 && cargaMaxima > 200;
 	}
 	
 	public int capacidadRestante (int cargaIntroducida) {
@@ -56,8 +56,13 @@ public class Camion extends Vehiculo implements Comparable<Camion>{
 		// TODO Auto-generated method stub
 		return Integer.compare(cargaMaxima, o.getCargaMaxima());
 	}
-	
-	
- 	
+
+	@Override
+	public String toString() {
+		return "Camion [getIdVehiculo()=" + getIdVehiculo() + ", getMarca()=" + getMarca() + ", getModelo()="
+				+ getModelo() + ", getAñoFabricacion()=" + getAñoFabricacion() + ", cargaMaxima=" + cargaMaxima
+				+ ", numEjes=" + numEjes + "]";
+	}
+
 
 }

@@ -52,7 +52,11 @@ public class Coche extends Vehiculo implements Comparable<Coche>{
 	}
 	
 	public String autonomiaEstimada () {
-		return "3litros/100km";
+		if (cilindrada < 1000) {
+			return "3litros/100km";
+		} else {
+			return "5litros/100km";
+		}
 	}
 	
 	public String clasificacionPorPlazas () {
@@ -86,7 +90,7 @@ public class Coche extends Vehiculo implements Comparable<Coche>{
 
 	@Override
 	public String toString() {
-		return "Coche [numPlazas=" + numPlazas + ", cilindrada=" + cilindrada + ", capacidadDeposito="
+		return super.toString()+" Coche [numPlazas=" + numPlazas + ", cilindrada=" + cilindrada + ", capacidadDeposito="
 				+ capacidadDeposito + "]";
 	}
 
