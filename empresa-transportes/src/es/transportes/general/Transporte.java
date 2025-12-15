@@ -62,10 +62,6 @@ public class Transporte implements Identificable<Integer>, Descriptible, Compara
 		return fecha;
 	}
 
-	public int getPrecio() {
-		return precio;
-	}
-
 	public static List<String> getPosiblesDestinos() {
 		return POSIBLES_DESTINOS;
 	}
@@ -103,6 +99,7 @@ public class Transporte implements Identificable<Integer>, Descriptible, Compara
 			this.destino = destino;
 		} else {
 			System.out.println("El destino no puede ser distinto a los que trabaja esta empresa");
+			this.destino = "Valladolid";
 		}
 	}
 
@@ -168,12 +165,6 @@ public class Transporte implements Identificable<Integer>, Descriptible, Compara
 	}
 
 	@Override
-	public boolean esFinanciable() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
 	public int compareTo(Transporte o) {
 		// TODO Auto-generated method stub
 		return Integer.compare(precio, o.getPrecio());
@@ -184,7 +175,39 @@ public class Transporte implements Identificable<Integer>, Descriptible, Compara
 		// TODO Auto-generated method stub
 		return getIdTransporte();
 	}
+
+	@Override
+	public int getPrecio() {
+		int precioFinal = precio;
+		if (getVehiculo().getClass() == Coche.class) {
+			precioFinal += 20;
+		} else if (getVehiculo().getClass() == Furgoneta.class) {
+			precioFinal += 40;
+		} else {
+			precioFinal += 100;
+		}
+		
+		if (!mozos.isEmpty()) {
+			precioFinal += mozos.size() * 10;
+		}
+		
+		if (destino.equals(POSIBLES_DESTINOS.get(3))) { // Valencia
+			precioFinal += 25;
+		} else if (destino.equals(POSIBLES_DESTINOS.get(1))) { // Murcia
+			precioFinal += 20;
+		} else if (destino.equals(POSIBLES_DESTINOS.get(2))) { // Zaragoza
+			precioFinal += 30;
+		} else if (destino.equals(POSIBLES_DESTINOS.get(0))) { //Valladolid
+			precioFinal += 15;
+		} else if (destino.equals(POSIBLES_DESTINOS.get(4))){ 	//Albacete
+			precioFinal += 10;
+		}
+		
+		return precioFinal;
+	}
 	
-	
+	public int getPrecioBase() {
+		return precio;
+	}
  	
 }

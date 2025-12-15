@@ -1,6 +1,6 @@
 package es.transportes.general;
 
-public class Camion extends Vehiculo implements Comparable<Camion>{
+public class Camion extends Vehiculo implements Comparable<Vehiculo>{
 	
 	private int cargaMaxima;
 	private int numEjes;
@@ -52,9 +52,13 @@ public class Camion extends Vehiculo implements Comparable<Camion>{
 	}
 
 	@Override
-	public int compareTo(Camion o) {
-		// TODO Auto-generated method stub
-		return Integer.compare(cargaMaxima, o.getCargaMaxima());
+	public int compareTo(Vehiculo o) {
+		if (o.getClass() == Camion.class) {
+			Camion c = (Camion) o;
+			return Integer.compare(getCargaMaxima(), c.getCargaMaxima() );
+		}
+//		return super.compareTo(); Haría falta que la clase Vehiculo tuviese un comparable.
+		return 0;
 	}
 
 	@Override
