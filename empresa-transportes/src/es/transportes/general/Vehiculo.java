@@ -71,7 +71,7 @@ public abstract class Vehiculo implements Identificable<Integer>, Descriptible{
 	}
 	
 	public void arrancar() {
-		System.out.println("Arrancando el vehículo...");
+		System.out.println("Arrancando el "+getClass().getName().substring(23)+"...");
 		for (int i = 3; i > 0; i--) {
 			System.out.println(i);
 		}

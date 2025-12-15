@@ -3,6 +3,7 @@ package es.transportes.app;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import es.transportes.general.*;
@@ -115,6 +116,143 @@ public class Main {
 		System.out.println("esVeterano de coche 1: "+coche1.esVeterano());
 		System.out.println("Antigüedad de camion 1: "+camion1.antiguedad());
 		System.out.println("esVeterano de camion 1: "+camion1.esVeterano());
+		
+		
+		inicializarEjercicio("B", 9);
+		coche1.arrancar();
+		furgoneta1.arrancar();
+		camion1.arrancar();
+		Vehiculo vehiculoAnonimo = new Vehiculo() {
+			
+			@Override
+			public String describir() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public Integer identificar() {
+				// TODO Auto-generated method stub
+				return null;
+				
+			}
+
+			@Override
+			public void arrancar() {
+				System.out.println("Arrancando vehiculo anonimo");
+				super.arrancar();
+			}
+			
+			
+		};
+		vehiculoAnonimo.arrancar();
+		
+		inicializarEjercicio("B", 10);
+		System.out.println("Lista sin ordenar:");
+		for (Coche coche : coches) {
+			System.out.println(coche);
+		}
+		
+		System.out.println("Lista ordenada:");
+		coches.sort(null);
+		for (Coche coche : coches) {
+			System.out.println(coche);
+		}
+		
+		System.out.println("Lista sin ordenar:");
+		for (Furgoneta furgo : furgonetas) {
+			System.out.println(furgo);
+		}
+		
+		System.out.println("Lista ordenada:");
+		furgonetas.sort(null);
+		for (Furgoneta furgo : furgonetas) {
+			System.out.println(furgo);
+		}
+	
+		System.out.println("Lista sin ordenar:");
+		for (Camion camion : camiones) {
+			System.out.println(camion);
+		}
+		
+		System.out.println("Lista ordenada:");
+		camiones.sort(null);
+		for (Camion camion : camiones) {
+			System.out.println(camion);
+		}
+		
+		inicializarEjercicio("B", 11);
+		System.out.println("Lista sin ordenar:");
+		for (Transporte transporte : transportes) {
+			System.out.println(transporte);
+		}
+		
+		System.out.println("Lista ordenada:");
+		transportes.sort(new ComparatorTransporteFecha());
+		for (Transporte transporte : transportes) {
+			System.out.println(transporte);
+		}
+		
+		System.out.println("Lista sin ordenar:");
+		for (Furgoneta furgo : furgonetas) {
+			System.out.println(furgo);
+		}
+		
+		System.out.println("Lista ordenada:");
+		furgonetas.sort(new ComparatorVehiculoMarca());
+		for (Furgoneta furgo : furgonetas) {
+			System.out.println(furgo);
+		}
+		
+		inicializarEjercicio("B", 12);
+		System.out.println("Lista sin ordenar:");
+		for (Financiable f : financiables) {
+			System.out.println(f);
+		}
+		
+		System.out.println("Lista ordenada:");
+		financiables.sort(new ComparatorFinanciablePrecio());
+		for (Financiable f : financiables) {
+			System.out.println(f);
+		}
+		
+		inicializarEjercicio("B", 13);
+		System.out.println("Mozos antes de eliminar");
+		for (MozoAlmacen mozoAlmacen : transporte1.getMozos()) {
+			System.out.println(mozoAlmacen);
+		}
+		
+		Iterator<MozoAlmacen> iterador = transporte1.getMozos().iterator();
+		while (iterador.hasNext()) {
+			MozoAlmacen mozoAlmacen = (MozoAlmacen) iterador.next();
+			if (mozoAlmacen.getEdad() > 50 || (!mozoAlmacen.isCursoPRL() && mozoAlmacen.getEdad() < 21 ||
+					mozoAlmacen.getNombre().equalsIgnoreCase("Ana"))) {
+				iterador.remove();
+			}
+		}
+		
+		System.out.println("Lista despues de eliminar");
+		for (MozoAlmacen mozoAlmacen : transporte1.getMozos()) {
+			System.out.println(mozoAlmacen);
+		}
+		
+		inicializarEjercicio("B", 14);
+		System.out.println(coche1.equals(coche2));
+		System.out.println(coche1 == coche2);
+		Coche coche5 = coche1;
+		System.out.println(coche1.equals(coche5));
+		System.out.println(coche1 == coche5);
+		
+		inicializarEjercicio("B", 15);
+		System.out.println(transporte1.describir());
+		System.out.println(transporte2.describir());
+		System.out.println(transporte3.describir());
+		System.out.println(transporte4.describir());
+		System.out.println("Precios finales: ");
+		System.out.println(transporte1.getPrecio());
+		System.out.println(transporte2.getPrecio());
+		System.out.println(transporte3.getPrecio());
+		System.out.println(transporte4.getPrecio());
 		
 		
 		
